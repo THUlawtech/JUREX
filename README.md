@@ -3,33 +3,17 @@
 Source code and data for *JUREX-4E: Juridical Expert-Annotated Four-Element Knowledge Base for Legal Reasoning*
 ## Overview
 
-- [Introduction](#introduction)
 - [Dataset Structure](#dataset-structure)
+- [Annotation](#Annotation)
 - [Experiment](#experiment)
   - [Similar Charge Distinction](#similar-charge-distinction)
   - [Legal Case Retrieval](#legal-case-retrieval)
 - [Requirements](#requirements)
 - [License](#license)
-## Introduction
-JUREX-4E is an expert-annotated knowledge base covering 155 criminal charges. 
-It is structured through a progressive hierarchical annotation framework that 
-prioritizes legal source validity and employs diverse legal interpretation methods to ensure comprehensiveness and authority.
-![main](img/main.jpg)
-<span style="color: gray;">*Thick arrows indicate the primary level where a particular interpretive method is applied, while dashed arrows represent its supplementary use at that level.</span>
-
-The statistics of JUREX-4E shows as follow:
-
-|  | Mean | Median |
-| ---- | ---- | ---- |
-| Avg. Length | 472.53 | - |
-| Subject | 51.64 | 17 |
-| Object | 36.01 | 25 |
-| Subjective Aspect | 42.38 | 21 |
-| Objective Aspect | 342.5 | 230 |
 
 ## Dataset Structure
-We used this method to organize criminal law, and JUREX-4E represents the first part of our curated expert knowledge base(mind map structure), 
-focusing solely on the four elements of criminal charges.
+JUREX-4E is the first part of our curated expert knowledge base(mind map structure), 
+focusing on the four elements of criminal charges.
 ```
 data
 - law  # legal texts
@@ -101,6 +85,24 @@ the original mind map:
     },
 ```
 
+## Annotation
+JUREX-4E is an expert-annotated knowledge base covering 155 criminal charges. 
+It is structured through a progressive hierarchical annotation framework that 
+prioritizes legal source validity and employs diverse legal interpretation methods to ensure comprehensiveness and authority.
+
+![main](img/main.jpg)
+<span style="color: gray;">*Thick arrows indicate the primary level where a particular interpretive method is applied, while dashed arrows represent its supplementary use at that level.</span>
+
+The statistics of JUREX-4E shows as follow:
+
+|  | Mean | Median |
+| ---- | ---- | ---- |
+| Avg. Length | 472.53 | - |
+| Subject | 51.64 | 17 |
+| Object | 36.01 | 25 |
+| Subjective Aspect | 42.38 | 21 |
+| Objective Aspect | 342.5 | 230 |
+
 ## Experiment
 We apply JUREX-4E to Similar Charge Distinction task and the Legal Case Retrieval task.
 ### Similar Charge Distinction
@@ -130,10 +132,33 @@ All experiments are conducted in a zero-shot setting, with the max\_tokens set t
 | GPT-4o+Article     | 95.34   | 96.30     | **92.64** | 93.03     | 88.30     | 89.33     | 92.09       | 92.89      |
 | Legal-COT          | 94.99   | 96.27     | 90.50     | 90.99     | 87.81     | 88.14     | 89.95       | 90.85      |
 | MALR               | 94.62   | 95.82     | 86.99     | 86.98     | 87.86     | 88.68     | 89.82       | 90.49      |
-| GPT-4o+FET_LLM     | 95.73   | 96.56     | 91.87     | 92.01     | 89.61     | 89.69     | 92.40       | 92.75      |
-| GPT-4o+FET_Expert  | **96.06** | **96.69** | 92.57     | **93.05** | **90.53** | **90.62** | **93.05**   | **93.45**  |
+| GPT-4o+FET<sub>LLM</sub>     | 95.73   | 96.56     | 91.87     | 92.01     | 89.61     | 89.69     | 92.40       | 92.75      |
+| GPT-4o+FET<sub>Expert</sub>  | **96.06** | **96.69** | 92.57     | **93.05** | **90.53** | **90.62** | **93.05**   | **93.45**  |
 
 ### Legal Case Retrieval
-todo
+
+We propose the FET<sub>Expert_guided</sub> method to enhance legal case retrieval by leveraging JUREX-4E. Our approach consists of three key steps:
+
+1. Predicting Charges: A small LLM analyzes case facts to predict potential charges.
+2.  Matching Elements: The model retrieves corresponding four-element details from a curated legal knowledge base. 
+3.  Analyzing Case Facts: Guided by the matched charges' four-element, another LLM generates case-specific four elements for each candidate. 
+The final ranking combines the similarity of case four elements and case facts between the query and candidates.
+
+| Model                         | NDCG@10 | NDCG@20 | NDCG@30 | R@1    | R@5    | R@10   | R@20   | R@30   | MRR    |
+|-------------------------------|---------|---------|---------|--------|--------|--------|--------|--------|--------|
+| BERT                          | 0.1511  | 0.1794  | 0.1978  | 0.0199 | 0.0753 | 0.1299 | 0.2157 | 0.2579 | 0.1136 |
+| Legal-BERT                    | 0.1300  | 0.1487  | 0.1649  | 0.0186 | 0.0542 | 0.1309 | 0.1822 | 0.2172 | 0.0573 |
+| Lawformer                     | 0.2684  | 0.3049  | 0.3560  | 0.0432 | 0.1479 | 0.2330 | 0.3349 | 0.4683 | 0.1096 |
+| ChatLaw                       | 0.2049  | 0.2328  | 0.2745  | 0.0353 | 0.1306 | 0.1913 | 0.2684 | 0.3751 | 0.1285 |
+| SAILER                        | 0.3142  | 0.4133  | 0.4745  | 0.0539 | 0.1780 | 0.3442 | 0.5688 | 0.7092 | 0.1427 |
+| GEAR                          | *       | *       | *       | 0.0630 | 0.1706 | 0.3142 | 0.4625 | *      | 0.2162 |
+| BGE                           | 0.4737  | 0.5539  | 0.5937  | 0.0793 | 0.2945 | 0.4298 | 0.6500 | 0.7394 | 0.1926 |
+| FET<sub>LLM</sub>             | 0.5139  | 0.5862  | 0.6291  | 0.0980 | 0.2967 | 0.4769 | 0.6802 | 0.7828 | 0.2140 |
+| &nbsp;&nbsp;&nbsp;&nbsp;- base | 0.3583  | 0.4293  | 0.4798  | 0.0506 | 0.2240 | 0.3644 | 0.5383 | 0.6652 | 0.1453 |
+| FET<sub>Expert_guided</sub>     | **0.5211** | **0.5920** | **0.6379** | **0.1024** | **0.3049** | **0.4883** | **0.6885** | **0.7967** | **0.2155** |
+| &nbsp;&nbsp;&nbsp;&nbsp;- base | 0.3766  | 0.4584  | 0.5111  | 0.0715 | 0.1894 | 0.3709 | 0.5891 | 0.7203 | 0.1624 |
+
+<span style="color: gray;">*SCR results. Bold fonts indicate leading results in each setting. * denotes that the indicator is not applicable to the current model. 
+
 ## License
 [MIT](LICENSE)
