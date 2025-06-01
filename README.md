@@ -171,21 +171,6 @@ python SCD_experiment/process&eval_output.py
 | GPT-4o+FET_{4o}              | 95.73       | 96.56      | 91.87          | 92.01         | 89.61          | 89.69         | 92.40        | 92.75       |
 | GPT-4o+FET_{Expert}          | **96.06**   | **96.69**  | 92.57          | **93.05**     | **90.53**      | **90.62**     | **93.05**    | **93.45**   |
 
-#### Step 1: Data Preprocessing
-
-Run [preprocess_scd_data.py](./SCD_experiment/preprocess_scd_data.py) to clean and preprocess the GCI dataset. The raw dataset can be downloaded from [GCI](https://github.com/xxxiaol/GCI/).
-
-#### Step 2: Batch Input Formatting
-
-Run [batch_input_data.py](./SCD_experiment/batch_input_data.py) to convert raw case descriptions into batch prompts suitable for different LLMs / different baselines:
-
-- For **Farui** or **Qwen2.5-72b**, refer to the scripts in [batch_input_farui_or_qwen](./SCD_experiment/batch_input_farui_or_qwen/).
-- For **GPT-4o**, use the scripts in [batch_input_gpt4o](./SCD_experiment/batch_input_gpt4o/).
-
-#### Step 3: Output Processing and Evaluation
-
-Run [process&eval_output.py](./SCD_experiment/process%26eval_output.py) to parse model outputs and compute evaluation metrics such as Accuracy and F1 score.
-
 ### Legal Case Retrieval
 
 We propose the FET<sub>Expert_guided</sub> method to enhance legal case retrieval by leveraging JUREX-4E. Our approach consists of three key steps:
