@@ -1,0 +1,12 @@
+python step1-search_results.py \
+    --encoder /root/autodl-tmp/Xorbits/bge-m3 \
+    --queries ./data/test_query_LJP+simcrime_4ele_unique.json \
+    --languages zh \
+    --index_save_dir ./corpus-index \
+    --result_save_dir ./search_results \
+    --threads 16 \
+    --hits 1000 \
+    --pooling_method cls \
+    --normalize_embeddings True \
+    --add_instruction False \
+    --type +typecrime
