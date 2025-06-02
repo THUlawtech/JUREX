@@ -143,7 +143,7 @@ Convert raw case descriptions into batch prompts compatible with different LLMs/
 python SCD_experiment/batch_input_data.py
 ```
 
-* For **Farui** or **Qwen**, see: [`batch_input_farui_or_qwen/`](./SCD_experiment/batch_input_farui_or_qwen/)
+* For **Farui-plus** or **Qwen2.5-72b**, see: [`batch_input_farui_or_qwen/`](./SCD_experiment/batch_input_farui_or_qwen/)
 * For **GPT-4o**, see: [`batch_input_gpt4o/`](./SCD_experiment/batch_input_gpt4o/)
 
 #### 3. Output Processing and Evaluation
@@ -215,6 +215,7 @@ bash script/step1-search_results.sh       # Retrieve top-k matches
 | **BGE+FET (Expert, GPT-4o)**    | 0.5211  | 0.5920  | 0.6379  | 0.1024 | 0.3049 | **0.4883** | **0.6885** | **0.7967** | 0.2155 |
 | &nbsp;&nbsp;&nbsp;&nbsp;FET only             | 0.3766  | 0.4584  | 0.5111  | 0.0715 | 0.1894 | 0.3709 | 0.5891 | 0.7203 | 0.1624 |
 
+Qwen2.5 refers to the Qwen2.5-72b model
 
 ## License
 [MIT](LICENSE)
