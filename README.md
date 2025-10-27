@@ -36,6 +36,7 @@ An example:
 
 the mind map:
 ![sample](img/sample.png)
+![scsample](img/similar_crime_sample.png)
 `jurex4e.json`:
 ```json
     {
@@ -83,7 +84,55 @@ the mind map:
                 }
             ]
         }
-    },
+    }
+```
+```json
+{
+    "Crime of Releasing Hazardous Substances": {
+        "Object of the Crime": [
+            {
+                "title": "Public safety — that is, the safety of the lives and health of an unspecified majority of people, as well as major public and private property."
+            }
+        ],
+        "Objective Aspect": [
+            {
+                "title": "The perpetrator commits an act of releasing toxic, radioactive, or pathogenic substances, thereby endangering public safety.",
+                "topics": [
+                    {
+                        "title": "If the released substance is fake, it constitutes the crime of releasing fictitious hazardous substances (a crime of disrupting public order)."
+                    },
+                    {
+                        "title": "Classification of hazardous substances [T12/45]",
+                        "topics": [
+                            {
+                                "title": "(1) 'Releasing toxic, radioactive, or pathogenic substances' refers to acts of placing such materials into publicly consumed water sources, food, or beverages for sale, or into livestock or poultry drinking pools, feed, and similar items."
+                            },
+                            {
+                                "title": "(2) 'Toxic substances' refer to substances that can exert a poisonous effect on humans or animals, including chemical, biological, and microbiological toxins."
+                            },
+                            {
+                                "title": "(3) 'Radioactive substances' refer to materials containing radioactive elements such as uranium, radium, or thorium that may cause serious radiation hazards to humans, animals, or the environment, including nuclear materials capable of fission or fusion reactions."
+                            },
+                            {
+                                "title": "(4) 'Pathogenic agents of infectious diseases' refer to bacteria, fungi, toxin strains, or viruses that can reproduce under suitable conditions in human or animal bodies, thereby causing infection or even the spread of infectious diseases."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Subject of the Crime": [
+            {
+                "title": "General subject — including minors who have reached 14 years of age but are under 16."
+            }
+        ],
+        "Subjective Aspect": [
+            {
+                "title": "Intentional conduct. The offender’s motive does not affect the establishment of this crime."
+            }
+        ]
+    }
+}
 ```
  `flattened_jurex4e.json`:
 ```json
@@ -94,7 +143,17 @@ the mind map:
         "主观方面": "# 故意，行为人出于何种动机不影响本罪成立"
     },
 ```
+```json
+{
+  "Crime of Releasing Hazardous Substances": {
+    "Object of the Crime": "# Public safety — that is, the safety of the lives and health of an unspecified majority of people, as well as major public and private property.",
+    "Objective Aspect": "# The perpetrator commits an act of releasing toxic, radioactive, or pathogenic substances, thereby endangering public safety.\n\n## If the released substance is fake, it constitutes the crime of releasing fictitious hazardous substances (a crime of disrupting public order).\n\n## Classification of hazardous substances [T12/45]\n\n### (1) 'Releasing toxic, radioactive, or pathogenic substances' refers to acts of placing such materials into publicly consumed water sources, food, or beverages for sale, or into livestock or poultry drinking pools, feed, and similar items.\n\n### (2) 'Toxic substances' refer to substances that can exert a poisonous effect on humans or animals, including chemical, biological, and microbiological toxins.\n\n### (3) 'Radioactive substances' refer to materials containing radioactive elements such as uranium, radium, or thorium that may cause serious radiation hazards to humans, animals, or the environment, including nuclear materials capable of fission or fusion reactions.\n\n### (4) 'Pathogenic agents of infectious diseases' refer to bacteria, fungi, toxin strains, or viruses that can reproduce under suitable conditions in human or animal bodies, thereby causing infection or even the spread of infectious diseases.",
+    "Subject of the Crime": "# General subject — including minors who have reached 14 years of age but are under 16.",
+    "Subjective Aspect": "# Intentional conduct. The offender’s motive does not affect the establishment of this crime."
+  }
+}
 
+```
 ## Annotation
 JUREX-4E is structured through a progressive hierarchical annotation framework that 
 prioritizes legal source validity and employs diverse legal interpretation methods to ensure comprehensiveness and authority.
